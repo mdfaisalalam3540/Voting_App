@@ -22,7 +22,11 @@ import userRouter from "./routes/user.route.js";
 // http://localhost:3005/api/v1/users/login
 // http://localhost:3005/api/v1/users/logout
 
+import pollRouter from "./routes/poll.route.js";
+// http://localhost:3005/api/v1/polls/create
+
 // routes declaration
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/polls", pollRouter);
 
 export { app };

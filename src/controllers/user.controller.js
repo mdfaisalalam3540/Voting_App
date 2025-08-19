@@ -76,7 +76,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const { epicNumber, email, password } = req.body;
 
   // validation (epicNumber or email)
-  if (!epicNumber || !email) {
+  if (!epicNumber && !email) {
     throw new ApiError(400, "epicNumber or password is required");
   }
 
