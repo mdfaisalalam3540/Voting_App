@@ -26,6 +26,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, "Password is required"],
+      minLength: [8, "Password is too small"],
     },
     refreshToken: {
       type: String,
@@ -34,6 +35,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// hasing password
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
@@ -45,6 +47,7 @@ userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
+// generate access token
 userSchema.methods.generateAccessToken = function () {
   return jwt.sign(
     {
@@ -60,6 +63,7 @@ userSchema.methods.generateAccessToken = function () {
   );
 };
 
+// generate refresh token
 userSchema.methods.generateRefreshToken = async function () {
   const token = jwt.sign(
     {

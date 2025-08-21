@@ -9,6 +9,7 @@ const pollSchema = new mongoose.Schema(
     },
     description: {
       type: String,
+      required: true,
       trim: true,
     },
     options: {
@@ -27,7 +28,7 @@ const pollSchema = new mongoose.Schema(
       ], // array of strings
       validate: {
         validator: function (arr) {
-          return arr.length >= 2; // must have atleast options
+          return arr.length >= 2; // must have atleast 2 options
         },
         message: "Poll must have at least two options",
       },
