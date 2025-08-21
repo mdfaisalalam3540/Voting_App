@@ -25,8 +25,12 @@ import userRouter from "./routes/user.route.js";
 import pollRouter from "./routes/poll.route.js";
 // http://localhost:3005/api/v1/polls/create
 
+import voteRouter from "./routes/vote.route.js";
+// http://localhost:3005/api/v1/polls/vote
+
 // routes declaration
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/polls", pollRouter);
+app.use("/api/v1/votes", voteRouter);
 
 export { app };
