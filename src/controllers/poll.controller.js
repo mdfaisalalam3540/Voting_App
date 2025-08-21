@@ -5,28 +5,29 @@ import { Poll } from "../models/poll.model.js";
 
 const createPoll = asyncHandler(async (req, res) => {
   try {
-    // must be authenticated
+    // 1. authentication check
+    // ? => it is called optional chaining
     const userId = req.user?._id;
     if (!userId) {
       throw new ApiError(401, "Unauthorized user: Please log in");
     }
 
-    // read inputs
+    // 2. read inputs
     const { title, description, options, expiresAt, expiresInHours } = req.body;
 
-    // validate required fields
+    // 3. validate required fields
     if (!title || !options || options.length < 2) {
       throw new ApiError(400, "Poll must have a title and at least 2 options");
     }
 
-    // format options: accept both strings and objects
+    // 4. format options: accept both strings and objects
     const formattedOptions = options.map((opt) =>
       typeof opt === "string"
         ? { text: opt, votes: 0 }
         : { text: opt.text, votes: 0 }
     );
 
-    // handle expiry
+    // 5. handle expiry
     let finalExpiresAt;
     if (expiresAt) {
       finalExpiresAt = new Date(expiresAt);
@@ -42,7 +43,7 @@ const createPoll = asyncHandler(async (req, res) => {
       );
     }
 
-    // create poll
+    // 6. create poll
     const poll = await Poll.create({
       title,
       description,
@@ -51,7 +52,7 @@ const createPoll = asyncHandler(async (req, res) => {
       createdBy: userId,
     });
 
-    // return response
+    // 7. return response
     return res
       .status(201)
       .json(new ApiResponse(201, poll, "Poll created successfully!"));
