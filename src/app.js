@@ -28,9 +28,12 @@ import pollRouter from "./routes/poll.route.js";
 import voteRouter from "./routes/vote.route.js";
 // http://localhost:3005/api/v1/polls/vote
 
+import subscriptionRouter from "./routes/subscription.route.js";
+
 // routes declaration
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/polls", pollRouter);
 app.use("/api/v1/votes", voteRouter);
+app.use("/api/v1/subscriptions", subscriptionRouter);
 
 export { app };
