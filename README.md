@@ -98,7 +98,7 @@ It is designed with scalability and future enhancements in mind. Planned feature
 Follow these steps to ru the project locally:
 
 1. Clone the repository (bash)
-* git clone https://github.com/yourusername/voting-app-backend.git
+* git clone https://github.com/mdfaisalalam3540/Voting_App.git
 * cd voting-app-backend
 
 2. Package.json file creation (bash)
